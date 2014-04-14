@@ -1,52 +1,72 @@
 (function (global) {
-    var LoginViewModel,
-        app = global.app = global.app || {};
+    var $loginWrap,
+        $logoutWrap,
+        $username,
+        $password,
+        $loggedUser;
 
-    LoginViewModel = kendo.data.ObservableObject.extend({
-        isLoggedIn: false,
-        username: "",
-        password: "",
+    function init() {
+        $loginWrap = $("#login-wrap");
+        $logoutWrap = $("#logout-wrap");
+        $username = $("#login-username");
+        $password = $("#login-password");
+        $loggedUser = $("#logout-username");
 
-        onLogin: function () {
-            var that = this,
-                username = that.get("username").trim(),
-                password = that.get("password").trim();
+        setMode("login");
 
-            if (username === "" || password === "") {
-                navigator.notification.alert("Both fields are required!",
-                    function () { }, "Login failed", 'OK');
+        $username.on("keyup", checkEnter);
+        $password.on("keyup", checkEnter);
+        $("#login-reset").on("click", clearForm);
+        $("#login-form").on("submit", login);
+        $("#logout").on("click", logout);
+    }
 
-                return;
-            }
+    $(document).on("deviceready", init);
 
-            that.set("isLoggedIn", true);
-        },
+    function clearForm() {
+        $username.val("");
+        $password.val("");
+    }
 
-        onLogout: function () {
-            var that = this;
-
-            that.clearForm();
-            that.set("isLoggedIn", false);
-        },
-
-        clearForm: function () {
-            var that = this;
-
-            that.set("username", "");
-            that.set("password", "");
-        },
-
-        checkEnter: function (e) {
-            var that = this;
-
-            if (e.keyCode == 13) {
-                $(e.target).blur();
-                that.onLogin();
-            }
+    function setMode(mode) {
+        if (mode === "login") {
+            $loginWrap.show();
+            $logoutWrap.hide();
+        } else {
+            $loginWrap.hide();
+            $logoutWrap.show();
         }
-    });
+    }
 
-    app.loginService = {
-        viewModel: new LoginViewModel()
-    };
+    function login(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        var username = $username.val().trim(),
+            password = $password.val().trim();
+
+        if (username === "" || password === "") {
+            navigator.notification.alert("Both fields are required!",
+                                            function () { },
+                                            "Login failed",
+                                            'OK');
+        } else {
+            $loggedUser.text(username);
+            setMode("logout");
+        }
+    }
+
+    function logout() {
+        clearForm();
+        setMode("login");
+    }
+
+    function checkEnter(e) {
+        e.preventDefault();
+
+        if (e.keyCode == 13) {
+            $(e.target).blur();
+            login();
+        }
+    }
 })(window);

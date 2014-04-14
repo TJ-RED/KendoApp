@@ -1,159 +1,146 @@
-/* IMAGES */
-.welcome-image {
-    background-image: url(../styles/images/appbuilder.png);
-    background-repeat: no-repeat;
-    width: 320px;
-    height: 250px;
-    display: block;
-    margin: 0px auto;
-}
-.logo-image {
-    background-image: url(../styles/images/logo.png);
-    background-repeat: no-repeat;
-    width: 319px;
-    height: 60px;
-    display: block;
-    margin: 0px auto;
+.ui-footer {
+    text-align: center;
+    padding: 0.3em;
 }
 
-/* LOGIN VIEW STYLES */
-.login-button {
-    margin: 0 auto;
-    display: block;
-    width: 80%;
+.ui-footer > .footerText {
+    font-size: 0.8em;
+    position: relative;
+    top: -2px;
 }
 
-/* LOCATION VIEW STYLES */
-.map {
+.err {
+    color: red;
+}
+
+.buttons {
+    text-align: center;
+}
+
+.left {
+    float: left;
+    display: inline-block;
+}
+
+.right {
+    float: right;
+    display: inline-block;
+}
+
+.clear {
+    clear: both;
+}
+
+/* MAP STYLES*/
+#page-location-content {
     position: absolute;
-    top: 0;
+    top: 42px;
+    bottom: 30px;
     left: 0;
+    right: 0;
+    padding: 0;
+}
+
+#page-location-content .ui-input-search,
+#page-location-content div.ui-input-text {
+    margin: 0 10px;
+    padding: 0;
+    background-image: none;
+    position: relative;
+    border: none;
+}
+
+#map-canvas {
     width: 100%;
     height: 100%;
 }
-.map-tools {
+
+#map-search-wrap {
+    width: 100%;
     position: absolute;
-    top: 0;
-    left: 0;
     z-index: 10;
-    background-color: rgba(255, 255, 255, 0.85);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 3px;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
 }
-.map-tools > div {
-    position: relative;
-    text-align: center;
-    height: 100%;
+
+#map-address {
+    min-width: 200px;
+    width: 60%;
+    margin: 5px;
+    float: left;
+    background-color: #fff;
+    font-style: italic;
+    color: #000;
+    padding: 7px 10px;
+    border-radius: 3px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(180, 180, 180);
+    border-bottom-color: rgb(255, 255, 255);
+    box-shadow: 0 -1px 0 #3C3C3C;
 }
 
-.map-tools .map-tools-button {
-    position: absolute;
-    top: 0;
-    width: 60px;
-    height: 100%;
+#map-search {
+    float: left;
+    width: 40px;
+    height: 40px;
     color: #fff;
     border: none;
     background: none;
-    padding: 0;
-    margin: 0;
+    background-image: url(../styles/images/search.png);
+    background-repeat: no-repeat;
     background-position: center center;
+    margin-top: 4px;
+}
+
+#map-search:active {
+    background-image: url(../styles/images/search_active.png);
     background-repeat: no-repeat;
 }
-.map-tools .map-tools-button:before {
-    content: "";
-    position: absolute;
+
+#map-navigate-home {
+    float: left;
     width: 40px;
     height: 40px;
-    top: 50%;
-    left: 50%;
-    margin-top: -20px;
-    margin-left: -20px;
-    display: block;
+    color: #fff;
+    border: none;
+    background: none;
+    background-image: url(../styles/images/location.png);
+    background-repeat: no-repeat;
     background-position: center center;
+    margin-top: 4px;
+}
+
+#map-navigate-home:active {
+    background-image: url(../styles/images/location_active.png);
     background-repeat: no-repeat;
 }
-.map-tools .map-tools-button.home {
-    left: 0;
-}
-.map-tools .map-tools-button.search {
-    right: 0;
-}
-.map-tools .map-tools-button.home:before { background-image: url(../styles/images/location.png); }
-.map-tools .map-tools-button.home:active:before { background-image: url(../styles/images/location_active.png); }
-.map-tools .map-tools-button.search:before { background-image: url(../styles/images/search.png); }
-.map-tools .map-tools-button.search:active:before { background-image: url(../styles/images/search_active.png); }
 
-.map-tools input[type=search].map-tools-input {
-    height: 100%;
-    width: 65%;
-    margin: 1em 0;
-    padding: 0.5em 1em;
-}
-.km-wp .map-tools input[type=search].map-tools-input {
-    width: 50%;
-}
-
-/* WEATHER VIEW STYLES */
-.w-icon {
-    width: 32px;
-    height: 32px;
-    background-image: url(../styles/images/sprite-weather.png);
-    background-repeat: no-repeat;
-}
-.w-icon.sunny { background-position: 0px 0px; }
-.w-icon.cloudy { background-position: 0px -32px; }
-.w-icon.partly-cloudy { background-position: 0px -64px; }
-.w-icon.partly-sunny { background-position: 0px -96px; }
-.w-icon.shower { background-position: 0px -128px; }
-.w-icon.foggy { background-position: 0px -160px; }
-.w-icon.storm { background-position: 0px -192px; }
-
-.w-item-template:after {
-    clear: both;
-}
-.w-item-template > .w-icon {
-    float: left;
-}
-.w-item-template > .w-date {
-    float: left;
-    margin: 0.5em 0 0 1em;
-}
-.w-item-template > .w-temp {
-    float: right;
-    margin-top: 0.2em;
-}
-.w-item-template > .w-temp > span:last-of-type {
-    opacity: 0.5;
-}
-
-/* RETINA DISPLAY STYLES */
+/* RETINA DISPLAY STYLES*/
 @media only screen and (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi) {
-    .welcome-image {
-        background-image: url(../styles/images/appbuilder2x.png);
-        background-size: 100%;
-    }
-    .logo-image {
-        background-image: url(../styles/images/logo2x.png);
-        background-size: 100%;
-    }
-    .w-icon {
-        background-image: url(../styles/images/sprite-weather2x.png);
-        background-size: 100%;
-    }
-    .map-tools .map-tools-button:before.home {
-        background-image: url(../styles/images/location2x.png);
-        background-size: 100%;
-    }
-    .map-tools .map-tools-button:before.home:active {
-        background-image: url(../styles/images/location_active2x.png);
-        background-size: 100%;
-    }
-    .map-tools .map-tools-button:before.search {
+    #map-search {
         background-image: url(../styles/images/search2x.png);
+        background-repeat: no-repeat;
         background-size: 100%;
     }
-    .map-tools .map-tools-button:before.search:active {
+
+    #map-search:active {
         background-image: url(../styles/images/search_active2x.png);
+        background-repeat: no-repeat;
+        background-size: 100%;
+    }
+
+    #map-navigate-home {
+        background-image: url(../styles/images/location2x.png);
+        background-repeat: no-repeat;
+        background-size: 100%;
+    }
+
+    #map-navigate-home:active {
+        background-image: url(../styles/images/location_active2x.png);
+        background-repeat: no-repeat;
         background-size: 100%;
     }
 }
